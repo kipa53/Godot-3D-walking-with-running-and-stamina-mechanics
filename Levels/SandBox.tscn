@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bgbqnhbpqed34"]
+
+[ext_resource type="PackedScene" uid="uid://c0cdeg8f7s4c4" path="res://Player/player.tscn" id="1_gilti"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2b7vw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_gilti"]
+sky_material = SubResource("ProceduralSkyMaterial_2b7vw")
+
+[sub_resource type="Environment" id="Environment_yc8as"]
+background_mode = 2
+sky = SubResource("Sky_gilti")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gilti"]
+albedo_color = Color(1, 0.9843137, 0, 1)
+
+[node name="SandBox" type="Node3D" unique_id=1200538631]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1958275235]
+environment = SubResource("Environment_yc8as")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1419687765]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=2057081316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(64, 1, 64)
+
+[node name="CharacterBody3D" parent="." unique_id=948482651 instance=ExtResource("1_gilti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1405136724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.802)
+use_collision = true
+material = SubResource("StandardMaterial3D_gilti")
